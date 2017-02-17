@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "target": "ES5",
+        "module": "CommonJs",
+        "moduleResolution": "Node",
+        "sourceMap": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorator": true,
+        "libs": ["es2015", "dom"],
+        "noImpliedAny": true,
+        "suppresImplicitAnyIndexErrors": true
+    }
+}
