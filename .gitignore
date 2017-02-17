@@ -1,2 +1,4 @@
 /node_modules/
 /bundle/
+/src/**/*.js
+/src/**/*.map

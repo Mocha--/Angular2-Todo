@@ -5,9 +5,11 @@
         "moduleResolution": "Node",
         "sourceMap": true,
         "emitDecoratorMetadata": true,
-        "experimentalDecorator": true,
-        "libs": ["es2015", "dom"],
-        "noImpliedAny": true,
-        "suppresImplicitAnyIndexErrors": true
-    }
+        "experimentalDecorators": true,
+        "lib": ["es2015", "dom"],
+        "noImplicitAny": true,
+        "suppressImplicitAnyIndexErrors": true
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules"]
 }
