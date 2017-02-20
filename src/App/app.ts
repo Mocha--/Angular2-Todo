@@ -1,6 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { WidgetsModule } from './Widgets/Widgets.module';
+import './app.styl';
 
 @Component({
     selector: 'todo-app',
