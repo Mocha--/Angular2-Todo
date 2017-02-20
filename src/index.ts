@@ -14,6 +14,7 @@ if (process.env.ENV === 'development') {
     require('zone.js/dist/long-stack-trace-zone');
 }
 
+import './index.styl';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { TodoAppModule } from './App/app';
 

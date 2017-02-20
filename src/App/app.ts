@@ -1,17 +1,15 @@
 import { Component, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-// import todoAppTemplate from './app.html';
+import { WidgetsModule } from './Widgets/Widgets.module';
 
 @Component({
     selector: 'todo-app',
     templateUrl: './app.html'
 })
-class TodoApp {
-    name: string = 'Todo World'
-}
+class TodoApp { }
 
 @NgModule({
-    imports: [BrowserModule],
+    imports: [BrowserModule, WidgetsModule],
     declarations: [TodoApp],
     bootstrap: [TodoApp]
 })

@@ -1,6 +1,11 @@
-// import { Component } from '@angular/core';
-// import todoItemTemplate from './TodoItem.html';
-// @Component({selector: 'todo-item', template: todoItemTemplate})
-// export class TodoItem {
-//
-// }
+import { Component, Input } from '@angular/core';
+import { Todo } from '../../Models/Todo';
+
+@Component({
+    selector: 'todo-item',
+    templateUrl: './TodoItem.html'
+})
+export class TodoItem {
+    @Input()
+    todo: Todo = {task: 'this is default task', isCompleted: false};
+}
