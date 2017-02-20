@@ -13,14 +13,23 @@ module.exports = {
         path: path.resolve(__dirname, './dist'),
         filename: 'bundle.js'
     },
+    resolve: {
+        extensions: ['.ts', '.js']
+    },
     module: {
-        rules: [
-            {
+        rules: [{
                 test: /\.ts$/,
-                loader: 'ts-loader'
+                loaders: ['awesome-typescript-loader', 'angular2-template-loader']
+            }, {
+                test: /\.html$/,
+                loader: 'html-loader'
+            }, {
+                test: /\.styl$/,
+                loaders: ['style-loader', 'css-loader', 'stylus-loader']
             }
         ]
     },
+    devtool: 'cheap-module-eval-source-map',
     devServer: {
         contentBase: path.resolve(__dirname, './src'),
         port: PORT,
