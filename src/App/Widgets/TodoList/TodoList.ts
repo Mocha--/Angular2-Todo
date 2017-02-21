@@ -11,7 +11,8 @@ export class TodoList {
     todos: Todo[] = [];
 
     formSubmitHandler(evt: Event) {
-        console.info(evt);
+        evt.preventDefault();
         this.todos.push(new Todo(this.newTodo, false));
+        this.newTodo = '';
     }
 }

@@ -8,5 +8,5 @@ import './TodoItem.styl';
 })
 export class TodoItem {
     @Input()
-    todo: Todo = {task: 'this is default task', isCompleted: false};
+    todo: Todo = new Todo('', false);
 }

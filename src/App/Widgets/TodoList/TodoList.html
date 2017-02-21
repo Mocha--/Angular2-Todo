@@ -1,9 +1,15 @@
 <ul>
     <form (submit)="formSubmitHandler($event)" novalidate>
-        <input type="text" [(ngModel)]="newTodo" name="newTodo" />
+        <label for="newTodo">New Todo: </label>
+        <input #newtodo
+               id="newTodo"
+               type="text"
+               [(ngModel)]="newTodo"
+               name="newTodo" />
+        <p>{{newtodo.value}}</p>
         <button type="submit">Add</button>
     </form>
-    <li *ngFor="let todo of todos">
+    <li *ngFor="let todo of todos;">
         <todo-item [todo]="todo"></todo-item>
     </li>
 </ul>
