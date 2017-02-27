@@ -2,3 +2,4 @@
 /bundle/
 /src/**/*.js
 /src/**/*.map
+npm-debug.log
