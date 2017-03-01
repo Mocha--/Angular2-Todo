@@ -1,0 +1,8 @@
+<form (submit)="formSubmitHandler($event)" novalidate>
+    <input id="newTodo"
+           name="newTodo"
+           required
+           type="text"
+           [(ngModel)]="task"/>
+    <button type="submit">Add</button>
+</form>

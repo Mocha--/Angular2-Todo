@@ -1,0 +1,5 @@
+<ul>
+    <li [@flyEnterAndLeave] *ngFor="let todo of todos; trackBy: todo?.id">
+        <todo-item [todo]="todo"></todo-item>
+    </li>
+</ul>

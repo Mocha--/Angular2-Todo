@@ -1,12 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { Todo } from '../../Models/Todo';
-import './TodoItem.styl';
+import './TodoItem.component.styl';
 
 @Component({
     selector: 'todo-item',
-    templateUrl: './TodoItem.html'
+    templateUrl: './TodoItem.component.html'
 })
 export class TodoItem {
-    @Input()
-    todo: Todo = new Todo('', false);
+    @Input() todo: Todo = new Todo();
 }

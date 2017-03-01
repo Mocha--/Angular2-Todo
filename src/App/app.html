@@ -1,3 +1,4 @@
 <article>
-    <todo-list></todo-list>
+    <new-todo (onSubmit)="newTodoSubmitHandler($event)"></new-todo>
+    <todo-list [todos]="todos"></todo-list>
 </article>

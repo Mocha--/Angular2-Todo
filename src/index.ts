@@ -8,7 +8,7 @@ import 'zone.js/dist/zone';
 /**
  * vendors
  */
-import 'rxjs';
+// import 'rxjs';
 
 if (process.env.ENV === 'development') {
     require('zone.js/dist/long-stack-trace-zone');
