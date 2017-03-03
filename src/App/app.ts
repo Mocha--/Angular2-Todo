@@ -1,32 +1,30 @@
-import { Component, NgModule, OnInit } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { UIRouterModule } from 'ui-router-ng2';
 import { WidgetsModule } from './Widgets/Widgets.module';
-import { TodoService } from './Services/Todo.service';
-import { Todo } from './Models/Todo';
-import './app.styl';
-
-@Component({
-    selector: 'todo-app',
-    templateUrl: './app.html',
-    providers: [TodoService]
-})
-class TodoApp implements OnInit {
-    public todos: Todo[];
-
-    constructor(private todoService: TodoService) { }
-
-    ngOnInit(): void {
-        this.todos = this.todoService.todos;
-    }
-
-    newTodoSubmitHandler(task: string) {
-        this.todoService.add(new Todo({task}));
-    }
-}
+import { TodoApp } from './Scenes/Scene.component';
+import { Todos as TodosComponent } from './Scenes/Todos/Todos.component';
+import { Archives as ArchivesComponent } from './Scenes/Archives/Archives.component';
 
 @NgModule({
-    imports: [BrowserModule, WidgetsModule],
-    declarations: [TodoApp],
+    imports: [
+        BrowserModule,
+        WidgetsModule,
+        UIRouterModule.forRoot({
+            states: [{
+                name: 'todos',
+                url: '/todos',
+                component: TodosComponent
+            }, {
+                name: 'archives',
+                url: '/archives',
+                component: ArchivesComponent
+            }],
+            useHash: true,
+            otherwise: '/todos'
+        })
+    ],
+    declarations: [TodoApp, TodosComponent, ArchivesComponent],
     bootstrap: [TodoApp]
 })
 export class TodoAppModule {}
