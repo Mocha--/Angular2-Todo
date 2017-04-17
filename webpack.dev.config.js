@@ -25,6 +25,7 @@ module.exports = {
                 loader: 'html-loader'
             }, {
                 test: /\.styl$/,
+                // TODO: add post-css loader
                 loaders: ['style-loader', 'css-loader', 'stylus-loader']
             }
         ]

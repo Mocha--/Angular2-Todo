@@ -1,7 +1,15 @@
+$topHeader = {
+  height: 70px
+}
+
 top-header
   display: flex
+  height: $topHeader.height
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
 
-  section
-    cursor: pointer
-    line-height: 70px
+  a
+    flex: 0 0 auto
+    height: $topHeader.height
     padding: 0 20px
+    line-height: @height
+    cursor: pointer

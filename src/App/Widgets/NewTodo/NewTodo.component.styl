@@ -1,22 +1,30 @@
+$newTodo = {
+  height: 40px
+}
+
 new-todo
   display: block
 
   form
+    display: flex
+    height: 40px
+
     input
-      box-sizing: border-box
+      flex: 1 1 auto
       display: inline-block
+      box-sizing: border-box
+      height: $newTodo.height
+      padding: 0 10px
       border: 0
       border-bottom: 2px solid cyan
       margin: 0
-      padding: 0 10px
       outline: none
-      height: 25px
-      line-height: 21px
+      line-height: @height
 
     button
+      flex: 0 0 auto
+      padding: 0 20px
       border-radius: 4px
-      height: 36px
-      line-height:36px
-      padding: 0 10px
-      background: rgb(255, 64, 129)
+      margin: 0 0 0 10px
       color: white
+      background: rgb(255, 64, 129)

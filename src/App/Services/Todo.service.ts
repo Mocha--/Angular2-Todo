@@ -13,7 +13,13 @@ export class TodoService {
         ];
     }
 
-    add(todo: Todo) {
-        this.todos.unshift(todo);
+    add(todo: Todo): Todo[] {
+        this.todos = [todo, ...this.todos];
+        return this.todos;
+    }
+
+    remove(todo: Todo): Todo[] {
+        this.todos = this.todos.filter(elm => elm === todo);
+        return this.todos;
     }
 }

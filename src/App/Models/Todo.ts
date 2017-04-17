@@ -1,4 +1,4 @@
-interface TodoC {
+interface ITodo {
     task?: string;
     isCompleted?: boolean;
 }
@@ -8,7 +8,7 @@ export class Todo {
     public isCompleted: boolean;
     public id: number = Date.now();
 
-    constructor({task = '', isCompleted = false}: TodoC = {}) {
+    constructor({task = '', isCompleted = false}: ITodo = {}) {
         this.task = task;
         this.isCompleted = isCompleted;
     }

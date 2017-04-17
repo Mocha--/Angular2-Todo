@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { TodoService } from '../../Services/Todo.service';
-import { Todo } from '../../Models/Todo';
+import {Component, OnInit} from '@angular/core';
+import {TodoService} from '../../Services/Todo.service';
+import {Todo} from '../../Models/Todo';
+import './Todo.component.styl';
 
 @Component({
     selector: 'todos',
@@ -9,20 +10,18 @@ import { Todo } from '../../Models/Todo';
 })
 export class Todos {
     public todos: Todo[];
-    name = 'hehehe';
 
     constructor(private todoService: TodoService) { }
 
     ngOnInit(): void {
-        this.todos = this.todoService.todos;
-        console.info(this.name)
-
-        function tmp() {
-            this.name = 'lalala';
-        }
+        this.todos = [...this.todoService.todos];
     }
 
     newTodoSubmitHandler(task: string) {
-        this.todoService.add(new Todo({task}));
+        console.info(task)
+        if (!!task) {
+            this.todos = [...this.todoService.add(new Todo({task}))];
+            console.info(this.todos)
+        }
     }
 }

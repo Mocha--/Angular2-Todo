@@ -7,8 +7,29 @@ todo-list
     position: relative
 
     li
-      box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12)
+      position: relative
       height: 50px
-      line-height: @height
       margin: 10px 0
+      overflow: hidden
+      background: #78909C
       cursor: pointer
+      box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12)
+      user-select: none
+
+      .content
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: @width
+        background: white
+        transform: translate3d(0, 0, 0)
+
+      > strong
+        position: absolute
+        top: 0
+        right: 20px
+        bottom: 0
+        height: 20px
+        margin: auto 0
+        line-height: @height

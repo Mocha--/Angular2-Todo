@@ -1,5 +1,10 @@
 <ul>
-    <li [@flyEnterAndLeave] *ngFor="let todo of todos; trackBy: todo?.id">
-        <todo-item [todo]="todo"></todo-item>
+    <li [@flyEnterAndLeave]
+        (mousedown)="mouseDownHandler(todoView, $event)"
+        *ngFor="let todoView of todoViewList; trackBy: todo?.id">
+        <section class="content" [ngStyle]="todoView.contentStyle">
+            {{todoView.task}}
+        </section>
+        <strong [ngStyle]="todoView.doneStyle">Done</strong>
     </li>
 </ul>
