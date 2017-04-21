@@ -8,20 +8,16 @@ import './Todo.component.styl';
     templateUrl: './Todos.component.html',
     providers: [TodoService]
 })
-export class Todos {
+export class Todos implements OnInit {
     public todos: Todo[];
 
     constructor(private todoService: TodoService) { }
 
-    ngOnInit(): void {
+    ngOnInit() {
         this.todos = [...this.todoService.todos];
     }
 
     newTodoSubmitHandler(task: string) {
-        console.info(task)
-        if (!!task) {
-            this.todos = [...this.todoService.add(new Todo({task}))];
-            console.info(this.todos)
-        }
+        this.todos = !!task ? [...this.todoService.add(new Todo({task}))] : this.todos;
     }
 }
