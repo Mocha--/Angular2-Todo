@@ -1,4 +1,4 @@
-import {Component, Pipe, PipeTransform, ElementRef, Input, OnInit, OnChanges, OnDestroy, AfterViewInit, SimpleChanges, SimpleChange} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {trigger, state, style, transition, animate} from '@angular/core';
 import {Observable, Observer} from 'rxjs';
 import {Todo} from '../../Models/Todo';
@@ -18,8 +18,8 @@ interface MovingItem {
 }
 
 class TodoView {
-    contentStyle: TodoViewStyle = {transition: 'none', transform: 'translate3d(0, 0, 0)'};
-    doneStyle: TodoViewStyle = {transition: 'none', transform: 'scale3d(0, 0, 1)'};
+    private contentStyle: TodoViewStyle = {transition: 'none', transform: 'translate3d(0, 0, 0)'};
+    private doneStyle: TodoViewStyle = {transition: 'none', transform: 'scale3d(0, 0, 1)'};
 
     constructor(private task: string = '', private isCompleted: boolean = false) { }
 
@@ -60,45 +60,49 @@ class TodoView {
                 transform: 'translate3d(-50%, 0, 0)',
                 opacity: 0
             })),
-            transition(':enter, :leave', animate(300))
+            transition(':enter', animate('0.3s 0.2s ease'))
         ])
     ]
 })
 export class TodoList implements OnInit {
-    @Input() todos: Todo[];
-    todoViewList: TodoView[];
-    mouseDown$: Observable<MovingItem>;
-    mouseMove$: Observable<MouseEvent>;
-    mouseUp$: Observable<MouseEvent>;
-    mouseObserver: Observer<MovingItem>;
+    private todosViewList: TodoView[];
+    private mouseDown$: Observable<MovingItem>;
+    private mouseMove$: Observable<MouseEvent>;
+    private mouseUp$: Observable<MouseEvent>;
+    private mouseObserver: Observer<MovingItem>;
 
-    constructor(private elm: ElementRef) { }
-
-    /**
-      * Lifecycle Hooks
-      */
-    ngOnInit() {
-        this.todoViewList = this.todos.map((elm: Todo) => {
+    @Input() set todos(todos: Todo[]) {
+        this.todosViewList = todos.map((elm: Todo) => {
             const {task, isCompleted} = elm;
             return new TodoView(task, isCompleted);
         });
+    }
 
+    constructor() { }
+
+    get number() {
+        return this.todosViewList.length;
+    }
+
+    /**
+     * Lifecycle Hooks
+     */
+    ngOnInit() {
         this.mouseMove$ = Observable.fromEvent(document, MOUSE_MOVE_DOM_EVENT);
         this.mouseUp$ = Observable.fromEvent(document, MOUSE_UP_DOM_EVENT);
         this.mouseDown$ = Observable
             .create((observer: Observer<MovingItem>) => {
-                // this.mouseObserver = observer;
-                console.info('on subscription');
+                this.mouseObserver = observer;
             });
         this.mouseDown$
             .mergeMap((movingItem: MovingItem) => {
                 const {item, xCoordinate: initX} = movingItem;
-                // this.mouseUp$.subscribe(() => {
-                //     console.info('mouse up subscribed');
-                //     item.restoreDone();
-                //     item.addContentTransition();
-                //     item.restoreContentPos();
-                // });
+                this.mouseUp$.subscribe(() => {
+                    console.info('mouse up subscribed');
+                    item.restoreDone();
+                    item.addContentTransition();
+                    item.restoreContentPos();
+                });
                 return this.mouseMove$
                     .throttleTime(20)
                     .map((mouseMoveEvt: MouseEvent) => {
@@ -110,20 +114,19 @@ export class TodoList implements OnInit {
                     })
                     .takeUntil(this.mouseUp$);
             })
-            // .subscribe((value: MovingItem) => {
-            //     console.info('in subscribe')
-            //     const {item, xCoordinate} = value;
-            //     if (xCoordinate < 0) {
-            //         item.removeContentTransition();
-            //         item.moveContentTo(xCoordinate);
-            //         item.scaleDone((-xCoordinate - 20) / 50);
-            //     }
-            // });
+            .subscribe((value: MovingItem) => {
+                const {item, xCoordinate} = value;
+                if (xCoordinate < 0) {
+                    item.removeContentTransition();
+                    item.moveContentTo(xCoordinate);
+                    item.scaleDone((-xCoordinate - 20) / 50);
+                }
+            });
     }
 
     /**
-      * Dom Event Handlers
-      */
+     * Dom Event Handlers
+     */
     touchStartHandler() {
         console.info('touch start');
     }
@@ -134,5 +137,9 @@ export class TodoList implements OnInit {
 
     mouseDownHandler(item: TodoView, evt: MouseEvent) {
         this.mouseObserver.next({item, xCoordinate: evt.clientX});
+    }
+
+    buttonClickHandler() {
+        console.info('todolist footer button clicked')
     }
 }

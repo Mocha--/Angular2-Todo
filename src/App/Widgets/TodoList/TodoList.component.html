@@ -1,10 +1,12 @@
 <ul>
     <li [@flyEnterAndLeave]
         (mousedown)="mouseDownHandler(todoView, $event)"
-        *ngFor="let todoView of todoViewList; trackBy: todo?.id">
+        *ngFor="let todoView of todosViewList; trackBy: todo?.id">
         <section class="content" [ngStyle]="todoView.contentStyle">
             {{todoView.task}}
         </section>
         <strong [ngStyle]="todoView.doneStyle">Done</strong>
     </li>
 </ul>
+<p>{{number}}</p>
+<button ripple (click)="buttonClickHandler()">hehehe</button>

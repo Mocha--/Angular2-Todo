@@ -1,10 +1,10 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import { UIRouterModule } from 'ui-router-ng2';
-import { WidgetsModule } from './Widgets/Widgets.module';
-import { TodoApp } from './Scenes/Scene.component';
-import { Todos as TodosComponent } from './Scenes/Todos/Todos.component';
-import { Archives as ArchivesComponent } from './Scenes/Archives/Archives.component';
+import {UIRouterModule} from 'ui-router-ng2';
+import {WidgetsModule} from './Widgets/Widgets.module';
+import {TodoApp} from './Scenes/Scene.component';
+import {Todos as TodosComponent} from './Scenes/Todos/Todos.component';
+import {Archives as ArchivesComponent} from './Scenes/Archives/Archives.component';
 
 @NgModule({
     imports: [
@@ -21,7 +21,7 @@ import { Archives as ArchivesComponent } from './Scenes/Archives/Archives.compon
                 component: ArchivesComponent
             }],
             useHash: true,
-            otherwise: '/archives'
+            otherwise: '/todos'
         })
     ],
     declarations: [TodoApp, TodosComponent, ArchivesComponent],

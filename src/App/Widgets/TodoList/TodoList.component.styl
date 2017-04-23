@@ -20,8 +20,11 @@ todo-list
         position: absolute
         top: 0
         left: 0
+        box-sizing: border-box
         width: 100%
         height: @width
+        padding: 0 20px
+        line-height: 50px
         background: white
         transform: translate3d(0, 0, 0)
 
@@ -33,3 +36,10 @@ todo-list
         height: 20px
         margin: auto 0
         line-height: @height
+
+  > button
+    padding: 0 30px
+    border-radius: 4px
+    font-size: 20px
+    line-height: 40px
+    cursor: pointer

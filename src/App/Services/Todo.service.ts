@@ -19,7 +19,7 @@ export class TodoService {
     }
 
     remove(todo: Todo): Todo[] {
-        this.todos = this.todos.filter(elm => elm === todo);
+        this.todos = this.todos.filter((elm: Todo) => { return elm === todo; });
         return this.todos;
     }
 }

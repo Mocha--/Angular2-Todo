@@ -1,4 +1,5 @@
 import {Directive, Input, ElementRef, HostListener, OnInit, Component} from '@angular/core';
+import './Ripple.styl';
 
 const STATIC_POSITION = 'static';
 const RELATIVE_POSITION = 'relative';
@@ -33,17 +34,28 @@ export class RippleDirective implements OnInit {
     ngOnInit() {
         window.getComputedStyle(this.elm.nativeElement).position === STATIC_POSITION && this.makeHostedElmRelativePositioning();
         this.ripplesElm = document.createElement('div');
-        this.ripplesElm.setAttribute('style', 'position:absolute;top:0;left:0;width:100%;height:100%;');
+        this.ripplesElm.setAttribute('style', 'position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden');
         (this.elm.nativeElement as HTMLElement).appendChild(this.ripplesElm);
     }
 
-    @HostListener('click', ['$event'])
-    onClick(evt: MouseEvent) {
+    @HostListener('mousedown', ['$event'])
+    onMouseDown(evt: MouseEvent) {
         const {offsetX, offsetY} = evt;
+        const {width, height} = this.ripplesElm.getBoundingClientRect();
+        const rippleWidth = width > height ? width : height;
+        const rippleHeight = rippleWidth;
         const rippleElm = document.createElement('span');
-        rippleElm.setAttribute('style', `position:absolute;left:${offsetX / 2}px;top:${offsetY / 2}px;width: 100%;height: 100%;background: black`);
+        rippleElm.className = 'ripple';
+        rippleElm.setAttribute('style', `position:absolute;left:${offsetX - rippleWidth / 2}px;top:${offsetY - rippleHeight / 2}px;width:${rippleWidth}px;height:${rippleHeight}px;border-radius: 50%;`);
         this.ripplesElm.appendChild(rippleElm);
         console.info(window.getComputedStyle(this.elm.nativeElement).position);
+    }
+
+    @HostListener('mouseup')
+    onMouseUp(evt: MouseEvent) {
+        window.setTimeout(() => {
+            this.ripplesElm.firstChild && this.ripplesElm.removeChild(this.ripplesElm.firstChild);
+        }, 1000);
     }
 
     makeHostedElmRelativePositioning() {
