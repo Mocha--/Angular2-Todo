@@ -138,8 +138,4 @@ export class TodoList implements OnInit {
     mouseDownHandler(item: TodoView, evt: MouseEvent) {
         this.mouseObserver.next({item, xCoordinate: evt.clientX});
     }
-
-    buttonClickHandler() {
-        console.info('todolist footer button clicked')
-    }
 }

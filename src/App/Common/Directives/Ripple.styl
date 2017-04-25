@@ -1,12 +1,26 @@
 @keyframes rippleSpread
   0%
-    background: white
+    background: rgb(30, 30, 30)
     transform: scale3d(0, 0, 1)
     opacity: 0.75
 
   100%
     transform: scale3d(2, 2, 1)
-    opacity: 0
+    opacity: 0.2
 
-.ripple
-  animation: rippleSpread 1s
+.relative-positioned-for-ripples
+  position: relative
+
+.ripples
+  position:absolute
+  top:0
+  left:0
+  width:100%
+  height:100%
+  overflow:hidden
+
+  .ripple
+    position:absolute
+    border-radius: 50%
+    pointer-events: none
+    animation: rippleSpread 1.5s

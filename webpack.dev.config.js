@@ -27,14 +27,20 @@ module.exports = {
                 test: /\.styl$/,
                 // TODO: add post-css loader
                 loaders: ['style-loader', 'css-loader', 'stylus-loader']
+                // loader: ['to-string-loader', 'css-loader', 'stylus-loader']
             }
         ]
     },
     devtool: 'cheap-module-eval-source-map',
     devServer: {
         contentBase: path.resolve(__dirname, './src'),
+        host: '0.0.0.0',
         port: PORT,
-        hot: true
+        hot: true,
+        historyApiFallback: true,
+        headers: {
+            "X-powered-by": 'webpack-dev-server'
+        }
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
