@@ -1,8 +1,7 @@
 <ul>
     <li ripple
-        [@flyEnterAndLeave]
         (mousedown)="mouseDownHandler(todoView, $event)"
-        *ngFor="let todoView of todosViewList; trackBy: todo?.id">
+        *ngFor="let todoView of todosViewList">
         <section class="content" [ngStyle]="todoView.contentStyle">
             {{todoView.task}}
         </section>

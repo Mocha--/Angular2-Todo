@@ -1,5 +1,5 @@
 /node_modules/
-/bundle/
+/dist/
 /src/**/*.js
 /src/**/*.map
 npm-debug.log

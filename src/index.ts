@@ -15,6 +15,6 @@ if (process.env.ENV === 'development') {
 
 import './index.styl';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { TodoAppModule } from './App/App.module';
+import {AppModule} from './App/App.module';
 
-platformBrowserDynamic().bootstrapModule(TodoAppModule);
+platformBrowserDynamic().bootstrapModule(AppModule);

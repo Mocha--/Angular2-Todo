@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {trigger, state, style, transition, animate} from '@angular/core';
 import {Observable, Observer} from 'rxjs';
 import {Todo} from '../../Models/Todo';
 import './TodoList.component.styl';
@@ -53,23 +52,14 @@ class TodoView {
 
 @Component({
     selector: 'todo-list',
-    templateUrl: './TodoList.component.html',
-    animations: [
-        trigger('flyEnterAndLeave', [
-            state('void', style({
-                transform: 'translate3d(-50%, 0, 0)',
-                opacity: 0
-            })),
-            transition(':enter', animate('0.3s 0.2s ease'))
-        ])
-    ]
+    templateUrl: './TodoList.component.html'
 })
 export class TodoList implements OnInit {
-    private todosViewList: TodoView[];
-    private mouseDown$: Observable<MovingItem>;
-    private mouseMove$: Observable<MouseEvent>;
-    private mouseUp$: Observable<MouseEvent>;
-    private mouseObserver: Observer<MovingItem>;
+    public todosViewList: TodoView[];
+    public mouseDown$: Observable<MovingItem>;
+    public mouseMove$: Observable<MouseEvent>;
+    public mouseUp$: Observable<MouseEvent>;
+    public mouseObserver: Observer<MovingItem>;
 
     @Input() set todos(todos: Todo[]) {
         this.todosViewList = todos.map((elm: Todo) => {
