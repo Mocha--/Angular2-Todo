@@ -1,17 +1,28 @@
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
+const webpackBundleAnalyzer = require('webpack-bundle-analyzer');
 const path = require('path');
 const baseConfig = require('./webpack.base.config');
-const PORT = 7800;
-const HOST = '0.0.0.0';
+const DEV_SERVER_PORT = 7800;
+const ANALYZER_PORT = DEV_SERVER_PORT + 1;
+const HOST = 'localhost';
 
 module.exports = webpackMerge(baseConfig, {
-    entry: path.resolve(__dirname, '../src/index.ts'),
+    module: {
+        rules: [{
+            test: /\.ts$/,
+            loaders: [{
+                loader: 'awesome-typescript-loader'
+            }, {
+                loader: 'angular2-template-loader'
+            }]
+        }]
+    },
     devtool: 'cheap-module-eval-source-map',
     devServer: {
         contentBase: path.resolve(__dirname, '../src'),
         host: HOST,
-        port: PORT,
+        port: DEV_SERVER_PORT,
         hot: true,
         overlay: {
             errors: true
@@ -22,10 +33,15 @@ module.exports = webpackMerge(baseConfig, {
         }
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        // enable HMR globally
-
-        new webpack.NamedModulesPlugin(),
-        // prints more readable module names in the browser console on HMR updates
+        new webpack.DefinePlugin({
+            'process.env': {
+                'NODE_ENV': JSON.stringify('development')
+            }
+        }),
+        new webpack.HotModuleReplacementPlugin(), // enable HMR globally
+        new webpack.NamedModulesPlugin(), // prints more readable module names in the browser console on HMR updates
+        new webpackBundleAnalyzer.BundleAnalyzerPlugin({
+            analyzerPort: ANALYZER_PORT
+        })
     ]
 });

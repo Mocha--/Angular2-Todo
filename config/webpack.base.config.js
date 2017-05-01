@@ -4,19 +4,13 @@ const WEB = 'web';
 
 module.exports = {
     target: WEB,
+    entry: path.resolve(__dirname, '../src/index.ts'),
     resolve: {
         extensions: ['.ts', '.js', '.json'],
         modules: ['node_modules', path.resolve(__dirname, '../src')]
     },
     module: {
         rules: [{
-            test: /\.ts$/,
-            loaders: [{
-                loader: 'awesome-typescript-loader'
-            }, {
-                loader: 'angular2-template-loader'
-            }]
-        }, {
             test: /\.styl$/,
             // TODO: incorporate postcss-loader
             loaders: [{

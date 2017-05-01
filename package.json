@@ -6,8 +6,8 @@
   "scripts": {
     "start": "npm run dev:jit",
     "build": "npm run build:aot",
-    "dev:jit": "webpack-dev-server --config ./config/webpack.dev.config.js --open",
-    "build:aot": "npm run clean && webpack --config ./config/webpack.prod.config.js --progress",
+    "dev:jit": "webpack-dev-server --config ./config/webpack.dev.config.js --open --progress",
+    "build:aot": "npm run clean && webpack --config ./config/webpack.prod.config.js --progress --bail --profile --colors --json > stats.json",
     "clean": "rimraf ./dist",
     "angular:compile": "ngc -p tsconfig.json"
   },
@@ -34,6 +34,7 @@
     "typescript": "^2.1.6",
     "url-loader": "^0.5.8",
     "webpack": "^2.4.1",
+    "webpack-bundle-analyzer": "^2.4.0",
     "webpack-dev-server": "^2.4.5",
     "webpack-merge": "^4.1.0"
   },

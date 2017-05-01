@@ -1,4 +1,4 @@
-import {Directive, ElementRef, HostListener, OnInit, Renderer} from '@angular/core';
+import {Directive, ElementRef, HostListener, OnInit, Renderer2 as Renderer} from '@angular/core';
 import './Ripple.styl';
 
 interface RippleRect {
