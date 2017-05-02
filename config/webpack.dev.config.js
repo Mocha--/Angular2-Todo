@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const webpackBundleAnalyzer = require('webpack-bundle-analyzer');
+const autoprefixer = require('autoprefixer');
 const path = require('path');
 const baseConfig = require('./webpack.base.config');
 const DEV_SERVER_PORT = 7800;
@@ -16,11 +17,27 @@ module.exports = webpackMerge(baseConfig, {
             }, {
                 loader: 'angular2-template-loader'
             }]
+        }, {
+            test: /\.styl$/,
+            loaders: [{
+                loader: 'style-loader'
+            }, {
+                loader: 'css-loader'
+            }, {
+                loader: 'postcss-loader',
+                options: {
+                    plugins() {
+                        return [autoprefixer];
+                    }
+                }
+            }, {
+                loader: 'stylus-loader'
+            }]
         }]
     },
     devtool: 'cheap-module-eval-source-map',
     devServer: {
-        contentBase: path.resolve(__dirname, '../src'),
+        contentBase: false,
         host: HOST,
         port: DEV_SERVER_PORT,
         hot: true,

@@ -11,16 +11,6 @@ module.exports = {
     },
     module: {
         rules: [{
-            test: /\.styl$/,
-            // TODO: incorporate postcss-loader
-            loaders: [{
-                loader: 'style-loader'
-            }, {
-                loader: 'css-loader'
-            }, {
-                loader: 'stylus-loader'
-            }]
-        }, {
             test: /.html$/,
             loader: 'html-loader'
         }, {
