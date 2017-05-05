@@ -1,16 +1,31 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 import './Sidebar.component.styl';
+
+interface NavItem {
+    path: string;
+    displayName: string;
+}
+
+const NAV_LIST: NavItem[] = [{
+    path: 'todos',
+    displayName: 'todos'
+}, {
+    path: 'archives',
+    displayName: 'archives'
+}];
 
 @Component({
     selector: 'sidebar',
     templateUrl: './Sidebar.component.html'
 })
-export class Sidebar implements OnInit{
-    menu: string[];
+export class SidebarComponent implements OnInit{
+    public navList: NavItem[];
 
-    constructor() { }
+    constructor(private router: Router) {}
 
     ngOnInit() {
-        this.menu = [];
+        this.navList = NAV_LIST;
+        this.router.navigate(['/archives']);
     }
 }

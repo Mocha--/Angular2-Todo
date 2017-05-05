@@ -7,7 +7,7 @@ import {Todo} from '../../Models/Todo';
     templateUrl: './Archives.component.html',
     providers: [TodoService]
 })
-export class Archives implements OnInit {
+export class ArchivesComponent implements OnInit {
     archives: Todo[];
 
     constructor(private todoService: TodoService) { }

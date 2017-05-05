@@ -16,7 +16,7 @@
         "quotemark": [true, "single", "jsx-double"],
         "interface-name": [true, "never-prefix"],
         "directive-selector": [true, "attribute", ["dir-prefix1", "dir-prefix2"], "camelCase"],
-        "component-selector": [true, "element", ["cmp-prefix1", "cmp-prefix2"], "kebab-case"],
+        "component-selector": [true, "element", []],
         "use-input-property-decorator": true,
         "use-output-property-decorator": true,
         "use-host-property-decorator": true,

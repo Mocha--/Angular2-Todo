@@ -1,10 +1,10 @@
 <aside>
     <p>
-
+        Navigation
     </p>
     <ul>
-        <li *ngFor="let item of menu">
-            <a uiSref=""></a>
+        <li *ngFor="let navItem of navList; trackBy navItem?.id">
+            <a [routerLink]="navItem.path">{{navItem.displayName}}</a>
         </li>
     </ul>
 </aside>

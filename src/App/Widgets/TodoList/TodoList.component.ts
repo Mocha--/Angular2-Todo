@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Observable, Observer} from 'rxjs';
 import {Todo} from '../../Models/Todo';
+import {TodoService} from '../../Services/Todo.service';
 import './TodoList.component.styl';
 
 const MOUSE_MOVE_DOM_EVENT = 'mousemove';
@@ -50,6 +51,10 @@ class TodoView {
     }
 }
 
+interface TMP {
+    counter: number;
+}
+
 @Component({
     selector: 'todo-list',
     templateUrl: './TodoList.component.html'
@@ -87,12 +92,12 @@ export class TodoList implements OnInit {
         this.mouseDown$
             .mergeMap((movingItem: MovingItem) => {
                 const {item, xCoordinate: initX} = movingItem;
-                this.mouseUp$.subscribe(() => {
-                    console.info('mouse up subscribed');
-                    item.restoreDone();
-                    item.addContentTransition();
-                    item.restoreContentPos();
-                });
+                // this.mouseUp$.subscribe(() => {
+                //     console.info('mouse up subscribed');
+                //     item.restoreDone();
+                //     item.addContentTransition();
+                //     item.restoreContentPos();
+                // });
                 return this.mouseMove$
                     .throttleTime(20)
                     .map((mouseMoveEvt: MouseEvent) => {

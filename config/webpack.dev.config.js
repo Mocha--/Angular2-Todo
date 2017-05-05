@@ -56,9 +56,9 @@ module.exports = webpackMerge(baseConfig, {
             }
         }),
         new webpack.HotModuleReplacementPlugin(), // enable HMR globally
-        new webpack.NamedModulesPlugin(), // prints more readable module names in the browser console on HMR updates
-        new webpackBundleAnalyzer.BundleAnalyzerPlugin({
-            analyzerPort: ANALYZER_PORT
-        })
+        new webpack.NamedModulesPlugin() // prints more readable module names in the browser console on HMR updates
+        // new webpackBundleAnalyzer.BundleAnalyzerPlugin({
+        //     analyzerPort: ANALYZER_PORT
+        // })
     ]
 });

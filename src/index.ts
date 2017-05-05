@@ -9,7 +9,7 @@ import 'zone.js/dist/zone';
 /**
  * vendors
  */
- console.info(process.env.NODE_ENV);
+ console.info(`Current Mode is ${process.env.NODE_ENV}`);
 
 import {enableProdMode} from '@angular/core';
 if (process.env.NODE_ENV === 'production') {
