@@ -9,7 +9,8 @@
     "server:prod": "http-server ./dist -p 7802 -o",
     "build": "npm run build:aot",
     "build:aot": "npm run clean && webpack --config ./config/webpack.prod.config.js --progress --bail --profile --colors --json > stats.json",
-    "clean": "rimraf ./dist",
+    "clean:dist": "rimraf ./dist",
+    "clean": "npm run clean:dist",
     "angular:compile": "ngc -p tsconfig.json"
   },
   "author": "",
