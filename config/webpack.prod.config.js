@@ -6,6 +6,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const ngToolsWebpack = require('@ngtools/webpack');
+const BUNDLE_STYLE_FILENAME = 'bundle.[contenthash].css';
+const extractBundleStyle = new ExtractTextPlugin({filename: BUNDLE_STYLE_FILENAME});
 
 module.exports = webpackMerge(baseConfig, {
     output: {
@@ -18,7 +20,7 @@ module.exports = webpackMerge(baseConfig, {
             loader: '@ngtools/webpack'
         }, {
             test: /\.styl$/,
-            loader: ExtractTextPlugin.extract({
+            loader: extractBundleStyle.extract({
                 fallback: 'style-loader',
                 use: [{
                     loader: 'css-loader'
@@ -36,6 +38,7 @@ module.exports = webpackMerge(baseConfig, {
         }]
     },
     plugins: [
+        extractBundleStyle,
         new webpack.DefinePlugin({
             'process.env': {
                 'NODE_ENV': JSON.stringify('production')
@@ -51,9 +54,6 @@ module.exports = webpackMerge(baseConfig, {
                 screw_ie8: true
             },
             comments: false
-        }),
-        new ExtractTextPlugin({
-            filename: 'bundle.[contenthash].css'
         }),
         new ngToolsWebpack.AotPlugin({
             tsConfigPath: path.resolve(__dirname, '../tsconfig.json'),

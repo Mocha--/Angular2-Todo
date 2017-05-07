@@ -20,12 +20,19 @@ const NAV_LIST: NavItem[] = [{
     templateUrl: './Sidebar.component.html'
 })
 export class SidebarComponent implements OnInit{
-    public navList: NavItem[];
+    navList: NavItem[];
 
     constructor(private router: Router) {}
 
     ngOnInit() {
         this.navList = NAV_LIST;
         this.router.navigate(['/archives']);
+    }
+
+    /**
+     * navItem trackyBy function
+     */
+    navItemTrackBy(index: number, item: NavItem) {
+        return item;
     }
 }

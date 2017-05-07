@@ -51,10 +51,6 @@ class TodoView {
     }
 }
 
-interface TMP {
-    counter: number;
-}
-
 @Component({
     selector: 'todo-list',
     templateUrl: './TodoList.component.html'

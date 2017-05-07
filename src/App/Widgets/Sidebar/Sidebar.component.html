@@ -1,9 +1,9 @@
 <aside>
     <p>
-        Navigation
+        <i class="zmdi zmdi-flower-alt"></i>Navigation
     </p>
     <ul>
-        <li *ngFor="let navItem of navList; trackBy navItem?.id">
+        <li *ngFor="let navItem of navList; trackBy: navItemTracyBy">
             <a [routerLink]="navItem.path">{{navItem.displayName}}</a>
         </li>
     </ul>
